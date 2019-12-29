@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StaticPagesController extends Controller
 {
@@ -11,11 +12,17 @@ class StaticPagesController extends Controller
         $option = 'A';
        for($i=1;$i<=4;$i++) {
             echo $option++."<br>";
-            echo sprintf('%03d',$i);
+            echo sprintf('%05d',$i);
        }
 
        $data = explode(',','A,B,C');
        dump($data);
+
+       $info = Db::table('zd_shop')->get();
+       foreach($info as $val) {
+            echo $info->telphone;
+       }
+       dump($info);
        //mysql 数据结构优化
        //整型可以存储int数据类型，
     }
@@ -31,16 +38,35 @@ class StaticPagesController extends Controller
         return view('staticPages/about');
     }
 
+    //投票控制器
     public function about2()
     {
-        return $this->error($this->display());
+
+
     }
 
     public function about3()
     {
-        $sql = "select * from user a left join user_log b on a.id = b.uid group by add_time order by id DESC limit 10";
-        $this->db_retail = $db;
-        $result = $db->query($sql);
-        dump($result);
+        Db::start();
+        $map = [];
+        for($i=1;$i<=10000;$i++) {
+            $data = [
+                'name' => $i,
+                'nickname' => 'nickname'.$i,
+                'img_url' => 'img_url'.$i,
+            ];
+
+           $map[] = Db::table('zd_shop')->insert($data);
+        }
+        if(!empty($map) && count($map)>=10000){
+            dump('插入成功');
+            Db::commit();
+        }else{
+            Db::rollback();
+        }
+    }
+
+    public static function getOne($id){
+        
     }
 }
