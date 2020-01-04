@@ -7,24 +7,16 @@ use Illuminate\Support\Facades\DB;
 
 class StaticPagesController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
-        $option = 'A';
-       for($i=1;$i<=4;$i++) {
-            echo $option++."<br>";
-            echo sprintf('%05d',$i);
-       }
+        
+    }
 
-       $data = explode(',','A,B,C');
-       dump($data);
+    public function sortCount()
+    {
+        $data = [1,2,22,11,1,8,22,6,9];
+        $left = count($data);
 
-       $info = Db::table('zd_shop')->get();
-       foreach($info as $val) {
-            echo $info->telphone;
-       }
-       dump($info);
-       //mysql 数据结构优化
-       //整型可以存储int数据类型，
     }
 
     public function help()
@@ -41,7 +33,10 @@ class StaticPagesController extends Controller
     //投票控制器
     public function about2()
     {
-
+        $data = $_GET['user_id'];
+        if($data){
+            return '123';
+        }
 
     }
 
@@ -70,3 +65,18 @@ class StaticPagesController extends Controller
         
     }
 }
+
+//unset 只会取消引用 不回销毁空间
+dump($_SERVER['SERVER_ADDR']);//服务端IP
+dump($_SERVER['SERVER_NAME']);
+dump($_SERVER['REQUEST_TIME']);
+dump($_SERVER['QUERY_STRING']);
+dump($_SERVER['REMOTE_ADDR']);//客户端IP
+dump($_SERVER['REQUEST_URI']);
+dump($_SERVER['HTTP_USER_AGENT']);
+
+
+
+
+
+
