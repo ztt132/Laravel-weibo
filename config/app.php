@@ -168,6 +168,7 @@ return [
 
         /*
          * Application Service Providers...
+         * 自定义服务
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -225,6 +226,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+
+        //自定义测试门面
+        'TestClass' => App\Facades\TestClass::class,
 
     ],
 

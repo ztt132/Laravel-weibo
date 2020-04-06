@@ -27,17 +27,4 @@ class AuthServiceProvider extends ServiceProvider
 
         //
     }
-
-    public function wxShare($id)
-    {
-        if(is_weixin()) {
-            $wxShareConifg = $this->getWxConfig($param);
-            $this->view('wxShare',$wxShareConifg);
-        }
-    }
-
-    public function getWxConfig() 
-    {
-        
-    }
 }

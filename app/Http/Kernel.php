@@ -41,6 +41,11 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        'admin' => [
+            'throttle:60,1',
+            'bindings',
+        ]
     ];
 
     /**
@@ -60,6 +65,10 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        //自定义中间件
+        'test.new' => \App\Http\Middleware\Test::class,
+        'auth.new' => \App\Http\Middleware\Auth::class,
     ];
 
     /**
